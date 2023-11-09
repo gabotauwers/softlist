@@ -37,7 +37,6 @@ li{
     position: relative;
     padding-left: 30px; /* Espacio para el checkbox */
     list-style: none;
-    width: 143% !important;
 }
 input[type="checkbox"] {
     position: absolute;
