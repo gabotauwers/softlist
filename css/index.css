@@ -1,0 +1,26 @@
+body{
+    margin: 0%;
+    padding: 0%;
+    
+}
+
+.product-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+footer {
+    background-color: #28a745;
+    color: white;
+    margin-top: 500px;
+    
+}
+
+#add{
+    position: absolute;
+    margin-top: 430px;
+    right: 10px; 
+}

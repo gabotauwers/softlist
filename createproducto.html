@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/createproducto.css">
+    <link rel="shortcut icon" href="img/icono.ico" type="image/x-icon">
+    <title>Crear producto</title>
+</head>
+<header class="bg-success text-white p-3">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>Crear Producto</h1>
+            <a href="index.html"><button id="addProducto" class="btn btn-light">
+                <i class="bi bi-arrow-return-left"></i>
+            </button></a>
+        </div>
+    </div>
+</header>
+
+    <div class="container mt-4">
+        <form>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del producto</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre del producto">
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="precio" placeholder="Precio">
+            </div>
+            <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="cantidad" placeholder="Cantidad">
+            </div>
+            <div class="mb-3">
+                <label for="unidad" class="form-label">Unidad</label>
+                <select class="form-select" id="unidad">
+                    <option value="" disabled selected>Selecciona la unidad</option>
+                    <option value="un">un</option>
+                    <option value="ml">ml</option>
+                    <option value="L">L</option>
+                    <option value="Lg">Lg</option>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="Caja">Caja</option>
+                    <option value="Galones">Galones</option>
+                    <option value="Botella">Botella</option>
+                    <option value="Lata">Lata</option>
+                    <option value="Paquete  ">Paquete</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoría</label><br>
+                <select class="form-select" id="categoria">
+                    <option value="" disabled selected>Selecciona la Categoría</option>
+                    <!-- <option value="Papelería">Papelería y limpieza</option>
+                    <option value="Bebidas">Bebidas</option>
+                    <option value="Carnes">Carnes</option>
+                    <option value="Platillos">Platillos preparados congelados</option>
+                    <option value="Carnes">Carnes frías, leche y productos lácteos</option>
+                    <option value="Frutas">Frutas, verduras y huevo</option>
+                    <option value="Higiene">Higiene Personal</option>
+                    <option value="Importados">Importados</option>
+                    <option value="Abarrotes">Abarrotes</option>
+                    <option value="Panadería">Panadería y postres</option>
+                    <option value="Salud">Salud y belleza</option> -->
+                </select>
+                <a href="createcat.html"><i class="bi bi-pencil"></i></a>
+            </div>
+            <div class="mb-3">
+                <label for="nota" class="form-label">Nota</label>
+                <input type="text" class="form-control" id="nota" placeholder="Nota">
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen del producto</label>
+                <input type="file" class="form-control" id="imagen" accept="image/*">
+            </div>
+            <center>
+            <a type="button" href="addproductos.html" class="btn btn-primary mb-3" id="crear">Agregar Producto</a></center>
+        </form>
+    </div>
+    <script src="js/base.js"></script>
+    <script src="js/pouchdb-nightly.js"></script>
+    <script src="js/getCategorias.js"></script>
+    <script src="js/createproducto.js"></script>
+</body>
+</html>
