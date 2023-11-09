@@ -36,8 +36,8 @@
             currentCategoria = producto.Categoria;
           }
           let lista1 = document.createElement("ul");
-          lista.id = "productList";
-          lista.className = "";
+          lista1.id = "productList";
+          lista1.className = "";
 
           let detalles = document.createElement("li");
           detalles.id = "productDetails";
@@ -108,8 +108,8 @@
               lista.removeChild(event.target.parentNode);
               // crearElementos(row, listaCarrito, true);
               let lista1 = document.createElement("ul");
-              lista.id = "productList";
-              lista.className = "";
+              lista1.id = "productList";
+              lista1.className = "";
 
               let detalles = document.createElement("li");
               detalles.id = "productDetails";
@@ -198,8 +198,8 @@
                 currentCategoria = producto.Categoria;
               }
               let lista1 = document.createElement("ul");
-              lista.id = "productList";
-              lista.className = "";
+              lista1.id = "productList";
+              lista1.className = "";
 
               let detalles = document.createElement("li");
               detalles.id = "productDetails";
