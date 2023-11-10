@@ -21,7 +21,7 @@
   crear.addEventListener("click", () => {
     // Get the selected image file
     var imagenFile = imagen.files[0];
-    alert(imagenFile);
+    //alert(imagenFile);
     if (imagenFile) {
       // Save the image to PouchDB
       saveImageToDB(imagenFile).then((imageUrl) => {
