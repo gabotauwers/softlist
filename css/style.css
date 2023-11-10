@@ -66,12 +66,18 @@ footer {
 }
 
 label{
-    font-size: medium;
+    font-size: small;
+}
+input{
+    font-size: small;
+    right: 0;
+    width: 100%;
 }
 p{
-    margin-left: 10px;
+    margin-left: 0px;
     font-size: medium;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
     display: block;
 }
 

@@ -1,24 +1,100 @@
-(function() {
+(function () {
+  'use strict';
 
-    'use strict';
-  
-    var ENTER_KEY = 13;
-    let nombre = document.getElementById("nombre");
-    let precio = document.getElementById("precio");
-    let categoria = document.getElementById("categoria");
-    let cantidad = document.getElementById("cantidad");
-    let unidad = document.getElementById("unidad");
-    let nota = document.getElementById("nota");
-    let crear = document.getElementById("crear");
-    var syncDom = document.getElementById('sync-wrapper');
-    let imagen = document.getElementById("imagen");
-    
-    crear.addEventListener("click", () =>{
-        var texto = imagen.value;
-        var nuevaRuta = texto.slice(12);
-    addTodo(nombre.value, categoria.options[categoria.selectedIndex].text, precio.value, 'img/productos/' + nuevaRuta, cantidad.value, unidad.options[unidad.selectedIndex].text, nota.value);
+  var ENTER_KEY = 13;
+  let nombre = document.getElementById("nombre");
+  let precio = document.getElementById("precio");
+  let categoria = document.getElementById("categoria");
+  let cantidad = document.getElementById("cantidad");
+  let unidad = document.getElementById("unidad");
+  let nota = document.getElementById("nota");
+  let crear = document.getElementById("crear");
+  var syncDom = document.getElementById('sync-wrapper');
+  let imagen = document.getElementById("imagen");
+  // let imagenPreview = document.getElementById("imagen-preview"); // Element to display image preview
+
+  // Add change event listener to the image input
+  imagen.addEventListener("change", function () {
+    handleImageUpload(this);
+  });
+
+  crear.addEventListener("click", () => {
+    // Get the selected image file
+    var imagenFile = imagen.files[0];
+    alert(imagenFile);
+    if (imagenFile) {
+      // Save the image to PouchDB
+      saveImageToDB(imagenFile).then((imageUrl) => {
+        // After successfully saving the image, add the product with the image URL
+        addTodo(
+          nombre.value,
+          categoria.options[categoria.selectedIndex].text,
+          precio.value,
+          imageUrl,
+          cantidad.value,
+          unidad.options[unidad.selectedIndex].text,
+          nota.value
+        );
+      }).catch((error) => {
+        console.error("Error saving image:", error);
+      });
+    } 
+    else {
+      // No image selected, add the product without an image URL
+      addTodo(
+        nombre.value,
+        categoria.options[categoria.selectedIndex].text,
+        precio.value,
+        '',
+        cantidad.value,
+        unidad.options[unidad.selectedIndex].text,
+        nota.value
+      );
     }
-  );
+  });
+
+  function handleImageUpload(input) {
+    // Display image preview
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      input.src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+
+  function saveImageToDB(imageFile) {
+    return new Promise((resolve, reject) => {
+      var reader = new FileReader();
+      reader.onloadend = function () {
+        // Convert the image to a base64-encoded string
+        var imageData = reader.result.split(',')[1];
+
+        // Save the image to PouchDB
+        // var imageDoc = {
+        //   _id: new Date().toISOString(),
+        //   type: 'image',
+        //   data: imageData
+        // };
+
+        // db.put(imageDoc, function (err, response) {
+        //   if (!err) {
+        //     // Resolve with the URL of the saved image
+            resolve(`data:image/png;base64,${imageData}`);
+        //   } else {
+        //     reject(err);
+        //   }
+        // });
+      };
+      reader.readAsDataURL(imageFile);
+    });
+  }
+    
+  //   crear.addEventListener("click", () =>{
+  //       var texto = imagen.value;
+  //       var nuevaRuta = texto.slice(12);
+  //   addTodo(nombre.value, categoria.options[categoria.selectedIndex].text, precio.value, 'img/productos/' + nuevaRuta, cantidad.value, unidad.options[unidad.selectedIndex].text, nota.value);
+  //   }
+  // );
     function sync() {
         syncDom.setAttribute('data-sync-state', 'syncing');
         var remote = new PouchDB(remoteCouch, {headers: {'Cookie': cookie}});
